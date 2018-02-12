@@ -1,0 +1,17 @@
+{
+  "name": "basicmicroservice",
+  "version": "1.0.0",
+  "description": "The basic structure of a node.js microservice using expess.js",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "microservice"
+  ],
+  "author": "Shane Larson",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
