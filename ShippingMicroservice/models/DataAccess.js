@@ -2,7 +2,7 @@ var DataAccess = function () {
 	this.MongoClient = require('mongodb').MongoClient
 		, assert = require('assert');
     this.Mongo = require('mongodb');
-	this.DBConnectionString = 'mongodb://127.0.0.1:27017';	
+	this.DBConnectionString = 'mongodb://127.0.0.1:27017/reporting_microservice';	
 };
 
 DataAccess.prototype.GetEntities = function(dbName, collectonName, query){

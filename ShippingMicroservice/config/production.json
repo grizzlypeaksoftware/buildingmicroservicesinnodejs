@@ -1,0 +1,8 @@
+{
+	"microservice": {
+		"config": {
+			"host": "25.140.50.193",
+			"port": 80
+		}
+	}
+}

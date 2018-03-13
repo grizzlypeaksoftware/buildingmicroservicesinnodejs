@@ -3,6 +3,8 @@ var express = require('express');
 var app = express();
 var path = require('path');
 
+
+
 app.engine('pug', require('pug').__express)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -12,12 +14,9 @@ app.use(express.static('static'));
 // Instantiate the Reporting Model
 var model = require('./models/reportingModel');
 
-
-
 app.get('/', function(req,res){
 	res.render('index', { title: 'Reporting Microservice' });
 });
-
 
 // Get JSON Reporting data by report name
 app.get('/getreport', function(req,res){	
@@ -28,14 +27,15 @@ app.get('/getreport', function(req,res){
 	});	
 });
 
-
-
 // Get CSV reporting data by report name
 app.get('/getcsv', function(req,res){	
 	res.send(model.GetCSV(req,res));
 });
 
-var server = app.listen(80, function () {
+var config = require('config');
+var microserviceConfig = config.get('microservice.config');
+
+var server = app.listen(microserviceConfig.port, function () {
 	var host = server.address().address;
 	var port = server.address().port;
 	
