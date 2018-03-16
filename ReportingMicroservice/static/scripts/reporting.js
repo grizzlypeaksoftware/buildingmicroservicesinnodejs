@@ -6,7 +6,7 @@ Page.prototype.InitPage = function(){
 
 Page.prototype.LoadData = function(){
 	$.ajax({
-		url: "/getReport"
+		url: "/getreport"
 	}).done(function(data) {
 		reactPage.DrawTable(data);
 	});

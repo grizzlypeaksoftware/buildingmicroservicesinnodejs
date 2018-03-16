@@ -7,6 +7,7 @@
     "example": "examples"
   },
   "dependencies": {
+    "aws-sdk": "^2.210.0",
     "config": "^1.30.0",
     "express": "^4.16.2",
     "mongodb": "^3.0.3",

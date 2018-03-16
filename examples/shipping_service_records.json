@@ -1,0 +1,34 @@
+[
+	{
+		"items": [
+			{
+			"item": "5aab39c29cf19034756675c1",
+		 	"amount": 1
+			}
+		],
+		"info": {
+			"name": "John Smith",
+			"address": "123 Aspen Dr",
+			"region": "CO",
+			"postal_code": "81520"
+		}
+	},
+	{
+		"items": [
+			{
+			"item": "5aab39c29cf19034756675c3",
+		 	"amount": 2
+			},
+			{
+			"item": "5aab39c29cf19034756675c4",
+		 	"amount": 2
+			}			
+		],
+		"info": {
+			"name": "Bob Johnson",
+			"address": "123 Other St",
+			"region": "AK",
+			"postal_code": "99502"
+		}
+	}
+]

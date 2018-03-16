@@ -22,8 +22,8 @@ class DataTable extends React.Component{
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th>Day</th>
-						<th>Sales</th>
+						<th>Message</th>
+						<th>Number</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -38,8 +38,8 @@ class DataRow extends React.Component{
 	render(){
 		return(
 			<tr>
-				<td>{this.props.item.day}</td>
-				<td>{this.props.item.sales}</td>
+				<td>{this.props.item.Message}</td>
+				<td>{this.props.item.PhoneNumber}</td>
 			</tr>
 		);
 	}

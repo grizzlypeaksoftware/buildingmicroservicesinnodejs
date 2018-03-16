@@ -20,8 +20,9 @@ app.get('/', function(req,res){
 });
 
 // Get JSON Reporting data by report name
-app.get('/getShippingOrders', function(req,res){	
-	model.GetReport().then(function(docs){
+app.get('/getOrders', function(req,res){	
+
+	model.GetOrders().then(function(docs){
 		res.send(docs);
 	}).catch(function(err){
 		res.send(err);

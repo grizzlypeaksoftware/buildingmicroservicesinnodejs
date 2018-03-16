@@ -27,8 +27,8 @@ app.get('/getMessages', function(req,res){
 	});	
 });
 
-app.get('sendMessage', function(req,res){
-
+app.get('/sendMessage', function(req,res){
+	model.SendMessage("test sms message", res);
 });
 
 
