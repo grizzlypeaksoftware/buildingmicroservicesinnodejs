@@ -30,7 +30,8 @@ class CardGroup extends React.Component{
 class Card extends React.Component{
 	render(){
 		return(
-			<div class="card col-md-3">
+			<div class="col-md-3">
+			<div class="card">
 				<img class="card-img-top img-thumbnail mt-2" src={this.props.item.image} alt={this.props.item.description} />
 				<div class="card-body">
 					<h5 class="card-title">{this.props.item.description}</h5>
@@ -39,6 +40,7 @@ class Card extends React.Component{
 					
 				</div>
 			</div>			
+			</div>
 		);
 	}
 }
