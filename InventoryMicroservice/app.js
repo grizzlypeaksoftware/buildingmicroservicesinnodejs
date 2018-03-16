@@ -21,7 +21,9 @@ app.get('/', function(req,res){
 
 // Get JSON Reporting data by report name
 app.get('/getInventory', function(req,res){	
-	model.GetReport().then(function(docs){
+	var category = req.query.category;
+	
+	model.GetInventory(category).then(function(docs){
 		res.send(docs);
 	}).catch(function(err){
 		res.send(err);

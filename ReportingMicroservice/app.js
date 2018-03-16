@@ -2,8 +2,8 @@
 var express = require('express');
 var app = express();
 var path = require('path');
-
-
+var config = require('config');
+var microserviceConfig = config.get('microservice.config');
 
 app.engine('pug', require('pug').__express)
 app.set('views', path.join(__dirname, 'views'));
@@ -19,21 +19,19 @@ app.get('/', function(req,res){
 });
 
 // Get JSON Reporting data by report name
-app.get('/getreport', function(req,res){	
-	model.GetReport().then(function(docs){
+app.get('/getreport', function(req,res){
+	var report = req.query.report;
+	var query = req.query.q;
+
+	if(!report){
+		report = "sales";
+	}	
+	model.GetReport(report, query).then(function(docs){
 		res.send(docs);
 	}).catch(function(err){
 		res.send(err);
 	});	
 });
-
-// Get CSV reporting data by report name
-app.get('/getcsv', function(req,res){	
-	res.send(model.GetCSV(req,res));
-});
-
-var config = require('config');
-var microserviceConfig = config.get('microservice.config');
 
 var server = app.listen(microserviceConfig.port, function () {
 	var host = server.address().address;
