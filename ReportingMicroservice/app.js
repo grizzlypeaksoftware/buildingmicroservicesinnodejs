@@ -18,6 +18,15 @@ app.get('/', function(req,res){
 	res.render('index', { title: 'Reporting Microservice' });
 });
 
+app.get('/heartbeat', function(req, res){
+	var status = {
+		success: true,
+		address: server.address().address,
+		port: server.address().port
+	 };
+	res.send(status);
+});
+
 // Get JSON Reporting data by report name
 app.get('/getreport', function(req,res){
 	var report = req.query.report;
@@ -33,7 +42,7 @@ app.get('/getreport', function(req,res){
 	});	
 });
 
-var server = app.listen(microserviceConfig.port, function () {
+var server = app.listen(microserviceConfig.port, microserviceConfig.host, function () {
 	var host = server.address().address;
 	var port = server.address().port;
 	

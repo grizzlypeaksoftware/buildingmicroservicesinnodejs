@@ -12,11 +12,20 @@ app.set('view engine', 'pug');
 
 app.use(express.static('static'));
 
-// Instantiate the Reporting Model
+// Instantiate the Inventory Model
 var model = require('./models/inventoryModel');
 
 app.get('/', function(req,res){
 	res.render('index', { title: 'Inventory Microservice' });
+});
+
+app.get('/heartbeat', function(req, res){
+	var status = {
+		success: true,
+		address: server.address().address,
+		port: server.address().port
+	 };
+	res.send(status);
 });
 
 // Get JSON Reporting data by report name
@@ -30,7 +39,7 @@ app.get('/getInventory', function(req,res){
 	});	
 });
 
-var server = app.listen(microserviceConfig.port, function () {
+var server = app.listen(microserviceConfig.port,  microserviceConfig.host, function () {
 	var host = server.address().address;
 	var port = server.address().port;
 	

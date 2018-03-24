@@ -20,6 +20,8 @@ Model.prototype.GetInventory = function(category){
 	
 };
 
+module.exports = new Model();
+
 
 
 
