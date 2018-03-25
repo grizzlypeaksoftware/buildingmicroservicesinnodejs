@@ -15,8 +15,10 @@ Model.prototype.GetMicroserviceData = function(url){
     
 	return new Promise(function(fulfill, reject){
         var request = http.get(url, res => {
-            if (res.statusCode < 200 || res.statusCode > 299) {
-                reject(new Error('Failed to load page, status code: ' + res.statusCode));
+            if (res.statusCode < 200 || 
+                res.statusCode > 299) {
+                    reject(new Error('Error status code: ' 
+                    + res.statusCode));
             }
             var body = "";
             res.setEncoding("utf8");
