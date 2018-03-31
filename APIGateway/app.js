@@ -19,6 +19,10 @@ app.get('/', function(req,res){
 	res.render('index', { title: 'API Gateway Example' });
 });
 
+app.get('/api_tester', function(req,res){
+	res.render('api_tester', { title: 'API Gateway Tester' });
+});
+
 // Get JSON Reporting data by report name
 app.get('/getStatus', function(req,res){
 

@@ -1,0 +1,39 @@
+extends template.pug
+
+block content
+	div.row
+		div#left_rail.col-md-3
+			h4 API Calls
+			ul.list-group
+				li.list-group-item
+					a.actionTrigger(href="javascript:void(0);",data-key="GetStatus", data-action="LoadAPICall") GET /getStatus
+				li.list-group-item.disabled Api Call 2
+				li.list-group-item.disabled Api Call 3
+		div#main_content.col-md-9
+			div#HeaderBox.border-bottom.border-secondary.p3.mb-3
+				h4#APICallHeader Select an API Call
+				p.mb-0
+					strong METHOD: 
+					span#APICallMethod 
+				p.mb-0
+					strong URL: 
+					span#APICallURL
+			div.tester_controls.clearfix
+				h4.float-left API Input
+				div.float-right.align-bottom
+					small.align-top.text-sm.pr-2.pt2 Open/Close
+					input.BoxToggle(type="checkbox", data-toggle="collapse", data-target="#UpperBox")
+			div#UpperBox.mb-3.p3
+				textarea#InputData.form-control(rows=10)
+			div.tester_controls.clearfix
+				h4.float-left API Output
+				div.float-right
+					small.align-top.text-sm.pr-2.pt2 Open/Close
+					input.BoxToggle(type="checkbox", data-toggle="collapse", data-target="#LowerBox")
+			div#LowerBox.border.border-secondary.mb-5
+				textarea#OutputData.form-control(rows=10)
+		
+block scripts
+	script(type='text/babel', src='../react/api_tester.js')
+	script(type='text/javascript', src='../scripts/api_tester_config.js')
+	script(type='text/javascript', src='../scripts/api_tester.js')
