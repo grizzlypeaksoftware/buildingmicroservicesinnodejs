@@ -28,7 +28,7 @@ module.exports = {
       host : '192.241.196.64',
       ref  : 'origin/master',
       repo : 'https://github.com/grizzlypeaksoftware/buildingmicroservicesinnodejs.git',
-      path : '/var/www/microservices/buildingmicroservicesinnodejs/MessagingMicroservice',
+      path : '/var/www/microservices/buildingmicroservicesinnodejs',
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
     },
     dev : {
@@ -36,7 +36,7 @@ module.exports = {
       host : '192.241.196.64',
       ref  : 'origin/development',
       repo : 'https://github.com/grizzlypeaksoftware/buildingmicroservicesinnodejs.git',
-      path : '/var/www/microservices/buildingmicroservicesinnodejs/MessagingMicroservice',
+      path : '/var/www/microservices/buildingmicroservicesinnodejs',
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env dev',
       env  : {
         NODE_ENV: 'dev'
