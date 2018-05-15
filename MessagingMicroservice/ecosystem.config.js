@@ -24,7 +24,7 @@ module.exports = {
    */
   deploy : {
     production : {
-      user : 'node',
+      user : 'root',
       host : '192.241.196.64',
       ref  : 'origin/master',
       repo : 'https://github.com/grizzlypeaksoftware/buildingmicroservicesinnodejs.git',
@@ -32,7 +32,7 @@ module.exports = {
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
     },
     dev : {
-      user : 'node',
+      user : 'root',
       host : '192.241.196.64',
       ref  : 'origin/development',
       repo : 'https://github.com/grizzlypeaksoftware/buildingmicroservicesinnodejs.git',
