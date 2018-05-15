@@ -1,0 +1,3 @@
+installing pm2
+
+npm install pm2@latest -g
