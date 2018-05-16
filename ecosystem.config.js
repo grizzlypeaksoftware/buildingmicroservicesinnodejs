@@ -28,15 +28,15 @@ module.exports = {
       host : '192.241.196.64',
       ref  : 'origin/master',
       repo : 'https://github.com/grizzlypeaksoftware/buildingmicroservicesinnodejs.git',
-      path : '/var/www/microservices/buildingmicroservicesinnodejs',
+      path : '/var/www/buildingmicroservicesinnodejs',
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
     },
     dev : {
       user : 'root',
       host : '192.241.196.64',
-      ref  : 'origin/development',
+      ref  : 'origin/master',
       repo : 'https://github.com/grizzlypeaksoftware/buildingmicroservicesinnodejs.git',
-      path : '/var/www/microservices/buildingmicroservicesinnodejs',
+      path : '/var/www/buildingmicroservicesinnodejs',
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env dev',
       env  : {
         NODE_ENV: 'dev'
