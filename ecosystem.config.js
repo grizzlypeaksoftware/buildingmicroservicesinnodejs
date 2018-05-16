@@ -25,7 +25,7 @@ module.exports = {
   deploy : {
     production : {
       user : 'root',
-      host : '192.241.196.64',
+      host : '206.189.208.52',
       ref  : 'origin/master',
       repo : 'https://github.com/grizzlypeaksoftware/buildingmicroservicesinnodejs.git',
       path : '/var/www/buildingmicroservicesinnodejs',
@@ -33,7 +33,7 @@ module.exports = {
     },
     dev : {
       user : 'root',
-      host : '192.241.196.64',
+      host : '206.189.208.52',
       ref  : 'origin/master',
       repo : 'https://github.com/grizzlypeaksoftware/buildingmicroservicesinnodejs.git',
       path : '/var/www/buildingmicroservicesinnodejs',
