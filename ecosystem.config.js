@@ -25,7 +25,7 @@ module.exports = {
   deploy : {
     production : {
       key: " /root/.ssh/id_rsa.pub",
-      user : 'root',
+      user : 'agent.slarson@gmail.com',
       host : '206.189.208.52',
       ref  : 'origin/master',
       repo : 'https://github.com/grizzlypeaksoftware/buildingmicroservicesinnodejs.git',
@@ -34,7 +34,7 @@ module.exports = {
     },
     dev : {
       key: " /root/.ssh/id_rsa.pub",
-      user : 'root',
+      user : 'agent.slarson@gmail.com',
       host : '206.189.208.52',
       ref  : 'origin/master',
       repo : 'https://github.com/grizzlypeaksoftware/buildingmicroservicesinnodejs.git',
