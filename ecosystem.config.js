@@ -24,6 +24,7 @@ module.exports = {
    */
   deploy : {
     production : {
+      key: '/root/.ssh/git_rsa.pub',
       user : 'root',
       host : '206.189.208.52',
       ref  : 'origin/master',
