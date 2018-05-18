@@ -40,6 +40,7 @@ module.exports = {
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env dev',
       env  : {
         NODE_ENV: 'dev'
+        
       }
     }
   }
