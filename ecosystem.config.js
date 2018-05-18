@@ -7,14 +7,20 @@ module.exports = {
 
     // First application
     {
-      name      : 'messaging',
-      script    : 'MessagingMicroservice/app.js',
+      name      : 'API',
+      script    : 'app.js',
       env: {
         COMMON_VARIABLE: 'true'
       },
       env_production : {
         NODE_ENV: 'production'
       }
+    },
+
+    // Second application
+    {
+      name      : 'WEB',
+      script    : 'web.js'
     }
   ],
 
@@ -24,19 +30,19 @@ module.exports = {
    */
   deploy : {
     production : {
-      user : 'root',
-      host : '206.189.208.52',
+      user : 'node',
+      host : '212.83.163.1',
       ref  : 'origin/master',
-      repo : 'git@github.com:grizzlypeaksoftware/buildingmicroservicesinnodejs.git',
-      path : '/var/www/buildingmicroservicesinnodejs',
+      repo : 'git@github.com:repo.git',
+      path : '/var/www/production',
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
     },
     dev : {
-      user : 'root',
-      host : '206.189.208.52',
+      user : 'node',
+      host : '212.83.163.1',
       ref  : 'origin/master',
-      repo : 'git@github.com:grizzlypeaksoftware/buildingmicroservicesinnodejs.git',
-      path : '/var/www/buildingmicroservicesinnodejs',
+      repo : 'git@github.com:repo.git',
+      path : '/var/www/development',
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env dev',
       env  : {
         NODE_ENV: 'dev'
