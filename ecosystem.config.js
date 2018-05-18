@@ -24,7 +24,7 @@ module.exports = {
    */
   deploy : {
     production : {
-      key: "/etc/ssh/ssh_host_rsa_key.pub",
+      key: "$/.ssh/id_rsa.pub",
       user : 'root',
       host : '206.189.208.52',
       ref  : 'origin/master',
@@ -33,7 +33,7 @@ module.exports = {
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
     },
     dev : {
-      key: "/etc/ssh/ssh_host_rsa_key.pub",
+       key: "$/.ssh/id_rsa.pub",
       user : 'root',
       host : '206.189.208.52',
       ref  : 'origin/master',
