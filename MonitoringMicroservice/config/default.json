@@ -1,0 +1,25 @@
+{
+	"microservice": {
+		"config": {
+			"host": "127.0.0.1",
+			"port": 8086,
+			"alerting": {
+				"address": "127.0.0.1",
+				"port": "8085",
+				"path": "/send"
+			},
+			"services": [
+				{ 
+					"name": "Reporting Microservice",
+					"url": "http://162.243.144.211",
+					"port": 8082
+				},
+				{ 
+					"name": "Shipping Microservice",
+					"url": "http://162.243.144.211",
+					"port": 8081
+				}						
+			]
+		}
+	}
+}

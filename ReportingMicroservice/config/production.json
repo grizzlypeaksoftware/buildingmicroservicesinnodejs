@@ -2,7 +2,7 @@
 	"microservice": {
 		"config": {
 			"host": "101.51.76.111",
-			"port": 80
+			"port": 8081
 		}
 	}
 }
