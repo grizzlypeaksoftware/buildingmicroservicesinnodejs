@@ -38,8 +38,8 @@ EventEngine.prototype.Start = function () {
 			}).catch(function(err){
                 console.log(err);
 
-                console.log('Sending SMS alert');
-                
+               ;
+
                 that.SendAlert(er, service).then(function(data){
                     console.log(data);
                 });
@@ -98,13 +98,16 @@ EventEngine.prototype.GetMicroserviceData = function(url, service){
 
         request.on("error", function(err){              
             err.success = false;        
+            that.SendAlert(er, service).then(function(data){
+                console.log(data);
+                });
             fulfill(err);
         });
     });
 };
 
 EventEngine.prototype.SendAlert = function(er, service){
-
+    console.log('Sending SMS alert')
     return new Promise(function(fulfill, reject){
 
         var post_data = {
