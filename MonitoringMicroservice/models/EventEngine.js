@@ -36,7 +36,13 @@ EventEngine.prototype.Start = function () {
 				console.log(values);
 				//res.send(values);
 			}).catch(function(err){
-				console.log(err);
+                console.log(err);
+
+                console.log('Sending SMS alert');
+                
+                that.SendAlert(er, service).then(function(data){
+                    console.log(data);
+                });
 						
 			});		
 
@@ -67,7 +73,7 @@ EventEngine.prototype.GetMicroserviceData = function(url, service){
                 res.statusCode > 299) {
                     var er = new Error('Error status code: '+ res.statusCode);
                     that.SendAlert(er, service).then(function(data){
-                        console.log(data);
+                    console.log(data);
                     });
                     reject(er);
             }
