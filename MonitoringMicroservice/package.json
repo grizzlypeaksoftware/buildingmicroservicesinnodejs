@@ -1,0 +1,15 @@
+{
+  "name": "monitoringmicroservice",
+  "version": "1.0.0",
+  "description": "Microservice for monitoring other microservices",
+  "main": "app.js",
+  "dependencies": {
+    "config": "^1.30.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shane Larson",
+  "license": "ISC"
+}
