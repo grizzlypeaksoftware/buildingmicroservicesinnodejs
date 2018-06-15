@@ -36,6 +36,12 @@ app.get('/getMessages', function(req,res){
 	});	
 });
 
+app.post('/send', function(req,res){
+	var message = req.body.message;
+	model.SendMessage(message, res);
+
+});
+
 app.get('/sendMessage', function(req,res){
 	model.SendMessage("test sms message", res);
 });

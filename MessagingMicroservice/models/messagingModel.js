@@ -33,7 +33,7 @@ Model.prototype.SendMessage = function(message, res){
 	 var params = {
         Message: message,
         MessageStructure: 'string',
-		PhoneNumber: '+13035551234'
+		PhoneNumber: '+13037754807'
     };  
 
     var sns = new aws.SNS();
