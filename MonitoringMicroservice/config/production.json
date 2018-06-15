@@ -1,37 +1,37 @@
 {
 	"microservice": {
 		"config": {
-			"host": "53.210.87.132",
-			"port": 80,
+			"host": "162.243.144.211",
+			"port": 8086,
 			"services": [
 				{ 
 					"name": "Reporting Microservice",
 					"url": "http://localhost",
-					"address": "127.0.0.1",
+					"address": "162.243.144.211",
 					"port": 8081
 				},
 				{ 
 					"name": "Inventory Microservice",
 					"url": "http://localhost",
-					"address": "127.0.0.1",
+					"address": "162.243.144.211",
 					"port": 8082
 				},
 				{ 
 					"name": "Shipping Microservice",
 					"url": "http://localhost",
-					"address": "127.0.0.1",
+					"address": "162.243.144.211",
 					"port": 8083
 				},
 				{ 
 					"name": "Users Microservice",
 					"url": "http://localhost",
-					"address": "127.0.0.1",
+					"address": "162.243.144.211",
 					"port": 8084
 				},
 				{ 
 					"name": "Messaging Microservice",
 					"url": "http://localhost",
-					"address": "127.0.0.1",
+					"address": "162.243.144.211",
 					"port": 8085
 				}							
 			]
