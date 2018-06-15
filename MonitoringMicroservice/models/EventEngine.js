@@ -98,7 +98,7 @@ EventEngine.prototype.GetMicroserviceData = function(url, service){
 
         request.on("error", function(err){              
             err.success = false;        
-            that.SendAlert(er, service).then(function(data){
+            that.SendAlert(err, service).then(function(data){
                 console.log(data);
                 });
             fulfill(err);
