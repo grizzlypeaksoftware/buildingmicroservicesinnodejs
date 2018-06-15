@@ -2,11 +2,7 @@
 	"microservice": {
 		"config": {
 			"host": "162.243.144.211",
-<<<<<<< HEAD
 			"port": 8083
-=======
-			"port": 8081
->>>>>>> dd486b28bc493f1356b31f1f1f24cfe0eda9214d
 		}
 	}
 }
