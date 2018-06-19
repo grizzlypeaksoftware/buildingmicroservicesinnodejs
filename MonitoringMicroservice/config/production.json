@@ -3,6 +3,12 @@
 		"config": {
 			"host": "162.243.144.211",
 			"port": 8086,
+			"alerting": {
+				"url": "http://162.243.144.211:8085/send",
+				"address": "162.243.144.211",
+				"port": "8085",
+				"path": "/send"
+			},
 			"services": [
 				{ 
 					"name": "Reporting Microservice",

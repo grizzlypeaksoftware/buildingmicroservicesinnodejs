@@ -2,6 +2,7 @@
 var express = require('express');
 var app = express();
 var path = require('path');
+var bodyParser = require('body-parser');
 
 var config = require('config');
 var microserviceConfig = config.get('microservice.config');
@@ -11,6 +12,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(express.static('static'));
+app.use(bodyParser.json);
 
 var model = require('./models/messagingModel');
 
@@ -37,7 +39,8 @@ app.get('/getMessages', function(req,res){
 });
 
 app.post('/send', function(req,res){
-	var message = req.body.message;
+	console.log(message + "%");
+	var message = req.body.message;	
 	model.SendMessage(message, res);
 
 });

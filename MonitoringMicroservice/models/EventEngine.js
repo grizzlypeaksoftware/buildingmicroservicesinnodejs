@@ -11,8 +11,12 @@ var EventEngine = function(){
 
 EventEngine.prototype.Start = function () {
 	var that = this;
-	console.log("Starting Event Engine");
-	console.log(microserviceConfig.services);
+    console.log("Starting Event Engine");
+    console.log("---------------------------------------");
+    console.log("Monitoring the following microservices");
+    console.log("---------------------------------------");
+    console.log(microserviceConfig.services);
+    console.log("---------------------------------------");
 	setInterval(function () {
 		try{        
 			var promises = that.GetStatus(microserviceConfig.services);
@@ -22,27 +26,40 @@ EventEngine.prototype.Start = function () {
 					var value = values[i];
 					
 					if(value.address && value.port){
-						for(var j = 0; j < microserviceConfig.services.length; j++){
-
-							if(microserviceConfig.services[j].address == value.address &&
-								microserviceConfig.services[j].port == value.port)
-								{
-									value.config = microserviceConfig.services[j];
-								}
-						}
+                        console.log("---------------------------------------");
+                        console.log("Address and Port Result");
+                        console.log(value.address  + ":" + value.port);
+                        message = "Service is up!";                        
+                        if(!value.success){
+                            message = "Service is DOWN!!!";
+                            var service;
+                            for(var j = 0; j < microserviceConfig.services.length; j++){
+                                if(microserviceConfig.services[j].address == value.address && microserviceConfig.services[j].port == value.port){
+                                    service = microserviceConfig.services[j];
+                                }
+                            }
+                            console.log(service);
+                            that.SendAlert(service).then(function(data){
+              
+                                console.log(data);
+                                }).catch(function(err){
+                                    
+                                    console.log(err);
+                                });
+                        }
+                        console.log(message);                        
+                        console.log("---------------------------------------");
+						
 					}
-				}
-
-				console.log(values);
-				//res.send(values);
+				}				
 			}).catch(function(err){
                 console.log(err);
 
-               ;
-
-                that.SendAlert(er, service).then(function(data){
-                    console.log(data);
-                });
+                //that.SendAlert(er, service).then(function(data){
+                  //  console.log(data);
+                //}).catch(function(err){
+                  //  console.log(err);
+                //});
 						
 			});		
 
@@ -71,10 +88,7 @@ EventEngine.prototype.GetMicroserviceData = function(url, service){
         var request = http.get(url, res => {
             if (res.statusCode < 200 || 
                 res.statusCode > 299) {
-                    var er = new Error('Error status code: '+ res.statusCode);
-                    that.SendAlert(er, service).then(function(data){
-                    console.log(data);
-                    });
+                    var er = new Error('Error status code: '+ res.statusCode);                   
                     reject(er);
             }
             var body = "";
@@ -98,15 +112,13 @@ EventEngine.prototype.GetMicroserviceData = function(url, service){
 
         request.on("error", function(err){              
             err.success = false;        
-            that.SendAlert(err, service).then(function(data){
-                console.log(data);
-                });
+           
             fulfill(err);
         });
     });
 };
 
-EventEngine.prototype.SendAlert = function(er, service){
+EventEngine.prototype.SendAlert = function(service){
     console.log('Sending SMS alert')
     return new Promise(function(fulfill, reject){
 
@@ -121,35 +133,47 @@ EventEngine.prototype.SendAlert = function(er, service){
             method: 'POST',
             headers: {
                 'Content-Type': 'text/json',
-                'Content-Length': Buffer.byteLength(post_data)
+                'Content-Length': Buffer.byteLength(JSON.stringify(post_data))
             }
         };
 
-        var request = http.request(url, res => {
-          
-            var body = "";
-            res.setEncoding("utf8");
-            res.on("data", data => {
-                body += data;
-            });
-            res.on("end", () => {
-                body = JSON.parse(body);
-                try{
-                    fulfill(body);
-                } catch(exception){
-                    reject(exception);
-                }
-            
-                if(body && body.success){ 
-                    fulfill(body.result);
-                }
-            });
-        });
+        var url = microserviceConfig.alerting.url;
+console.log(post_options);
+        
 
-        request.on("error", function(err){              
-            err.success = false;        
-            fulfill(err);
-        });
+            var req2 = http.request(post_options, function(res){
+
+            console.log('infidel');
+            
+                var body = "";
+                res.setEncoding("utf8");
+                res.on("data", data => {
+                    body += data;
+                });
+                res.on("end", () => {
+                    console.log(body);                   
+                    try{
+                        body = JSON.parse(body);
+                        fulfill(body);
+                    } catch(exception){
+                        reject(exception);
+                    }
+                
+                    if(body && body.success){ 
+                        fulfill(body.result);
+                    }
+                });
+            });
+
+            req2.on("error", function(err){              
+                err.success = false;        
+                fulfill(err);
+            });
+
+            console.log(post_data);
+
+            req2.write(JSON.stringify(post_data));
+           
     });
 };
 

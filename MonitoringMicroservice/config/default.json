@@ -4,7 +4,7 @@
 			"host": "127.0.0.1",
 			"port": 8086,
 			"alerting": {
-				"address": "127.0.0.1",
+				"address": "162.243.144.211",
 				"port": "8085",
 				"path": "/send"
 			},
