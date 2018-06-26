@@ -39,7 +39,7 @@ EventEngine.prototype.Start = function () {
                                 }
                             }
 
-                            /*
+                            
                             if(service.triggered){
                                 console.log("Text has already been delivered.");
                             } else {
@@ -51,7 +51,6 @@ EventEngine.prototype.Start = function () {
                             }
 
                             service.triggered = true;
-                            */
                             
                         }
                         console.log(message);                        
