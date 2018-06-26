@@ -38,14 +38,21 @@ EventEngine.prototype.Start = function () {
                                     service = microserviceConfig.services[j];
                                 }
                             }
-                            console.log(service);
-                            that.SendAlert(service).then(function(data){
-              
-                                console.log(data);
-                                }).catch(function(err){
-                                    
+
+                            /*
+                            if(service.triggered){
+                                console.log("Text has already been delivered.");
+                            } else {
+                                that.SendAlert(service).then(function(data){                            
+                                    console.log(data);
+                                }).catch(function(err){                                
                                     console.log(err);
                                 });
+                            }
+
+                            service.triggered = true;
+                            */
+                            
                         }
                         console.log(message);                        
                         console.log("---------------------------------------");
@@ -53,13 +60,7 @@ EventEngine.prototype.Start = function () {
 					}
 				}				
 			}).catch(function(err){
-                console.log(err);
-
-                //that.SendAlert(er, service).then(function(data){
-                  //  console.log(data);
-                //}).catch(function(err){
-                  //  console.log(err);
-                //});
+                console.log(err);              
 						
 			});		
 
@@ -74,7 +75,7 @@ EventEngine.prototype.Start = function () {
 EventEngine.prototype.GetStatus = function(services){
     var promises = [];
     for(var i = 0; i < services.length; i++){
-        var url = services[i].url + ":" + services[i].port + "/heartbeat";
+        var url = "http://" + services[i].address + ":" + services[i].port + "/heartbeat";
         promises.push(this.GetMicroserviceData(url, services[i]));
     }
     return promises;
@@ -127,53 +128,43 @@ EventEngine.prototype.SendAlert = function(service){
         }
 
         var post_options = {
-            host: microserviceConfig.alerting.address,
+            hostname: microserviceConfig.alerting.address,
             port: microserviceConfig.alerting.port,
             path: microserviceConfig.alerting.path,
             method: 'POST',
             headers: {
-                'Content-Type': 'text/json',
-                'Content-Length': Buffer.byteLength(JSON.stringify(post_data))
+                'Content-Type': 'application/json',
             }
         };
 
-        var url = microserviceConfig.alerting.url;
-console.log(post_options);
-        
+        var request = http.request(post_options, function(res){
 
-            var req2 = http.request(post_options, function(res){
-
-            console.log('infidel');
+            if (res.statusCode < 200 || res.statusCode >= 300) {
+                return reject(new Error('statusCode=' + res.statusCode));
+            }
             
-                var body = "";
-                res.setEncoding("utf8");
-                res.on("data", data => {
-                    body += data;
-                });
-                res.on("end", () => {
-                    console.log(body);                   
-                    try{
-                        body = JSON.parse(body);
-                        fulfill(body);
-                    } catch(exception){
-                        reject(exception);
-                    }
+            var body = [];
+            res.on("data", function(chunk){
+                body.push(chunk);            
+            });
+            
+            res.on("end", () => {             
+                try{                    
+                    body = JSON.parse(body.join('').toString());
+                } catch(e){
+                    reject(e);
+                }
                 
-                    if(body && body.success){ 
-                        fulfill(body.result);
-                    }
-                });
+                fulfill(body);
             });
-
-            req2.on("error", function(err){              
-                err.success = false;        
-                fulfill(err);
-            });
-
-            console.log(post_data);
-
-            req2.write(JSON.stringify(post_data));
-           
+        });
+        
+        request.on("error", function(err){                              
+            reject(err);
+        });
+        
+        request.write(JSON.stringify(post_data));
+        request.end();
     });
 };
 

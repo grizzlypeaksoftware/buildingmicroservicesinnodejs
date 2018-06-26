@@ -17,6 +17,7 @@ Model.prototype.GetMessages = function(){
 
 Model.prototype.InsertMessage = function(message){
 	return new Promise( function(fulfill, reject){	
+
 		DataAccess.InsertEntity(message, "messaging_microservice", "messages")
 		.then(function(result){
 			fulfill(result);
@@ -47,11 +48,13 @@ Model.prototype.SendMessage = function(message, res){
 		} 
         else{
 			status.success = true;
+			/*
 			that.InsertMessage(params).then(function(result){
 				res.send(result);
 			}).catch(function(error){
 				res.send(error);
 			});
+			*/
 		}   
     });    
 };

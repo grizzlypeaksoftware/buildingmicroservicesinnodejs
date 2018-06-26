@@ -4,7 +4,6 @@
 			"host": "162.243.144.211",
 			"port": 8086,
 			"alerting": {
-				"url": "http://localhost:8085/send",
 				"address": "127.0.0.1",
 				"port": "8085",
 				"path": "/send"
@@ -12,31 +11,26 @@
 			"services": [
 				{ 
 					"name": "Reporting Microservice",
-					"url": "http://162.243.144.211",
 					"address": "162.243.144.211",
 					"port": 8081
 				},
 				{ 
 					"name": "Inventory Microservice",
-					"url": "http://162.243.144.211",
 					"address": "162.243.144.211",
 					"port": 8082
 				},
 				{ 
 					"name": "Shipping Microservice",
-					"url": "http://162.243.144.211",
 					"address": "162.243.144.211",
 					"port": 8083
 				},
 				{ 
 					"name": "Users Microservice",
-					"url": "http://162.243.144.211",
 					"address": "162.243.144.211",
 					"port": 8084
 				},
 				{ 
 					"name": "Messaging Microservice",
-					"url": "http://162.243.144.211",
 					"address": "162.243.144.211",
 					"port": 8085
 				}							
